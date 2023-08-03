@@ -14,7 +14,8 @@ import java.util.Map;
  */
 public class MemberList implements List<Member> {
     private Map<String, Member> members;
-    public MemberList() {
+    private static MemberList memberList;
+    private MemberList() {
         members = new HashMap<>();
     }
 
@@ -49,5 +50,10 @@ public class MemberList implements List<Member> {
             System.out.println(member); 
         }
     }
+    public static MemberList getInstance(){
+        if (memberList==null) {
+            memberList=new MemberList();   
+        }
+        return memberList;
 }
-
+}
