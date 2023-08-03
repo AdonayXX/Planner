@@ -8,6 +8,10 @@ package Models;
  *
  * @author wendy
  */
-public interface List {
-    
+public interface List <Type> {
+public boolean insert(Type obj);
+public boolean delete(Type obj);
+public Type search(Object id);
+public Type[] toArray();
+
 }

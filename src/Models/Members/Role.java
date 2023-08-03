@@ -9,5 +9,9 @@ package Models.Members;
  * @author wendy
  */
 public enum Role {
-    
+LIDER,
+COORDINADOR,
+ESPECIALISTA,
+COLABORADOR;
+
 }
