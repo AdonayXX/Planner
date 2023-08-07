@@ -206,6 +206,9 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRoleActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
@@ -255,6 +258,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="btnClear">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/View/Icons/Nuevo.png"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" value="Limpiar"/>
           </Properties>
           <Events>
@@ -263,6 +269,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnSave">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/View/Icons/Guardar.png"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" value="Guardar"/>
           </Properties>
           <Events>
@@ -271,6 +280,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnDelete">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/View/Icons/Eliminar.png"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" value="Eliminar"/>
           </Properties>
           <Events>
@@ -279,6 +291,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnSearch">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/View/Icons/Buscar.png"/>
+            </Property>
             <Property name="toolTipText" type="java.lang.String" value="Buscar"/>
           </Properties>
           <Events>

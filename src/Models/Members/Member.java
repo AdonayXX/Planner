@@ -10,7 +10,7 @@ import Models.Entity;
  *
  * @author wendy
  */
-public class Member implements Entity {
+public class Member implements Entity{
     private String id;
     private String name;
     private String phone;

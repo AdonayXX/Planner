@@ -4,6 +4,8 @@
  */
 package View;
 
+import View.Members.FrmMembers;
+
 /**
  *
  * @author jprod
@@ -82,8 +84,8 @@ public class FrmMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuMembersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMembersActionPerformed
-        //FrmMembers frm = new FrmMembers();
-        //View.showInternal(desktopMenu, frm);
+        FrmMembers frm = new FrmMembers();
+        View.showInternal(desktopMenu, frm);
     }//GEN-LAST:event_menuMembersActionPerformed
 
     /**

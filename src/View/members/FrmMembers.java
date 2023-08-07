@@ -4,8 +4,14 @@
  */
 package View.Members;
 
+import Controller.MemberController;
 import Models.Members.Member;
+import Models.Members.Role;
 import View.View;
+import java.awt.event.KeyEvent;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -13,19 +19,26 @@ import View.View;
  * @author jprod
  */
 public class FrmMembers extends javax.swing.JInternalFrame implements View<Member> {
-    //Definir atributo de tipo controller
+    //Al ver que trabaja con objetos del tipo member supongo que es MemberController y no Controller. ;)
+    private MemberController controller;
+    private JComboBox<Role> cmbRole;
     /**
      * Creates new form FrmMembers
      */
     public FrmMembers() {
         initComponents();
-        //Instanciar atributo controller;
+        controller = new MemberController(this);
+        cmbRole = new JComboBox<>();
         this.loadRoles();
         //Llamar al metodo readAll de controller;
+        controller.readAll();
     }
     
     private void loadRoles(){
-        //Recorrer Enum de Role con foreach y agregar los valores a combobox
+       cmbRole.removeAllItems(); 
+    for (Role role : Role.values()) {
+        cmbRole.addItem(role); 
+    }
     }
 
     /**
@@ -88,6 +101,11 @@ public class FrmMembers extends javax.swing.JInternalFrame implements View<Membe
         txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         txtRole.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtRole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRoleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -140,6 +158,7 @@ public class FrmMembers extends javax.swing.JInternalFrame implements View<Membe
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Icons/Nuevo.png"))); // NOI18N
         btnClear.setToolTipText("Limpiar");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -147,6 +166,7 @@ public class FrmMembers extends javax.swing.JInternalFrame implements View<Membe
             }
         });
 
+        btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Icons/Guardar.png"))); // NOI18N
         btnSave.setToolTipText("Guardar");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +174,7 @@ public class FrmMembers extends javax.swing.JInternalFrame implements View<Membe
             }
         });
 
+        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Icons/Eliminar.png"))); // NOI18N
         btnDelete.setToolTipText("Eliminar");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +182,7 @@ public class FrmMembers extends javax.swing.JInternalFrame implements View<Membe
             }
         });
 
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Icons/Buscar.png"))); // NOI18N
         btnSearch.setToolTipText("Buscar");
         btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -293,42 +315,63 @@ public class FrmMembers extends javax.swing.JInternalFrame implements View<Membe
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
-        
+        clear();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        String id = txtId.getText();
+        String name= txtName.getText();
+        String phone= txtPhone.getText();
+        String email= txtEmail.getText();
+        Role role= (Role) cmbRole.getSelectedItem();
+        Member newMember = new Member(id, name, phone, email, role);
+        controller.insert(newMember);
+        clear();
+
         
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        
+         String id = txtId.getText();
+        if (!id.isEmpty()) {
+            Member memberToDelete = new Member(id);
+            controller.delete(memberToDelete);
+            clear();
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        
+        String idToSearch = JOptionPane.showInputDialog(this, "Ingrese la cedula del miembro a buscar:", "Buscar Miembro", JOptionPane.PLAIN_MESSAGE);
+        if (idToSearch != null && !idToSearch.isEmpty()) {
+            controller.read(idToSearch);
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void tblMembersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMembersMouseClicked
-//        if (evt.getClickCount() == 2) { // Verificar si hubo 2 clics (doble clic)
-//            int row = this.tblMembers.getSelectedRow();
-//            Object id = tblMembers.getValueAt(row, 0);
-//            this.controler.read(id);
-//        }
+      if (evt.getClickCount() == 2) { 
+            int row = this.tblMembers.getSelectedRow();
+            Object id = tblMembers.getValueAt(row, 0);
+           this.controller.read(id);
+        }
     }//GEN-LAST:event_tblMembersMouseClicked
 
     private void tblMembersKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tblMembersKeyReleased
-//        if (evt.getKeyCode()==KeyEvent.VK_DELETE){
-//            int row = this.tblMembers.getSelectedRow();
-//            if (row>-1){
-//                Object id = tblMembers.getValueAt(row, 0);
-//                this.controler.delete(new Member(id.toString()));
-//            }
-//        }
+    if (evt.getKeyCode()==KeyEvent.VK_DELETE){
+            int row = this.tblMembers.getSelectedRow();
+            if (row>-1){
+                Object id = tblMembers.getValueAt(row, 0);
+               this.controller.delete(new Member(id.toString()));
+            }
+        }
     }//GEN-LAST:event_tblMembersKeyReleased
 
     private void txtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFiltroKeyReleased
+
+    private void txtRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRoleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRoleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -356,37 +399,45 @@ public class FrmMembers extends javax.swing.JInternalFrame implements View<Membe
 
     @Override
     public void clear() {
-        
+    txtId.setText("");
+    txtName.setText("");
+    txtPhone.setText("");
+    txtEmail.setText("");
+    cmbRole.setSelectedIndex(0);
     }
     
     @Override
     public void display(Member member) {
-        
+    txtId.setText(member.getId());
+    txtName.setText(member.getName());
+    txtPhone.setText(member.getPhone());
+    txtEmail.setText(member.getEmail());
+    cmbRole.setSelectedItem(member.getRole());
     }
     
     @Override
     public void displayAll(Member[] regs) {
-//        DefaultTableModel tableModel=(DefaultTableModel) tblMembers.getModel();
-//        tableModel.setNumRows(0);
-//        for(Member member:regs){
-//            Object[] data=member.toArrayObject();
-//            tableModel.addRow(data);
-//        }
-//        this.tblMembers.setModel(tableModel);
+      DefaultTableModel tableModel=(DefaultTableModel) tblMembers.getModel();
+        tableModel.setNumRows(0);
+        for(Member member:regs){
+            Object[] data=member.toArrayObject();
+            tableModel.addRow(data);
+        }        this.tblMembers.setModel(tableModel);
     }
 
     @Override
     public void displayMessaje(String msj) {
-        
+    JOptionPane.showMessageDialog(this, msj, "Informacion Importante", JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override
     public void displayErrorMessaje(String msj) {
-        
+    JOptionPane.showMessageDialog(this, msj, "Hubo un error", JOptionPane.ERROR_MESSAGE);
     }
 
     @Override
     public boolean displayConfirmMessaje(String msj) {
-        
+    int option = JOptionPane.showConfirmDialog(this, msj, "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        return option == JOptionPane.YES_OPTION;
     }
 }
