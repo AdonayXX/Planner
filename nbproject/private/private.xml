@@ -5,10 +5,12 @@
         <group>
             <file>file:/C:/Users/wendy/OneDrive/Documentos/NetBeansProjects/Planner/src/Models/Entity.java</file>
             <file>file:/C:/Users/wendy/OneDrive/Documentos/NetBeansProjects/Planner/src/Models/Members/MemberList.java</file>
-            <file>file:/C:/Users/wendy/OneDrive/Documentos/NetBeansProjects/Planner/src/Models/Members/Role.java</file>
             <file>file:/C:/Users/wendy/OneDrive/Documentos/NetBeansProjects/Planner/src/View/View.java</file>
+            <file>file:/C:/Users/wendy/OneDrive/Documentos/NetBeansProjects/Planner/src/View/members/FrmMembers.java</file>
             <file>file:/C:/Users/wendy/OneDrive/Documentos/NetBeansProjects/Planner/src/Models/Members/Member.java</file>
-            <file>file:/C:/Users/wendy/OneDrive/Documentos/NetBeansProjects/Planner/src/Controler/Controler.java</file>
+            <file>file:/C:/Users/wendy/OneDrive/Documentos/NetBeansProjects/Planner/src/View/FrmMenu.java</file>
+            <file>file:/C:/Users/wendy/OneDrive/Documentos/NetBeansProjects/Planner/src/Controller/MemberController.java</file>
+            <file>file:/C:/Users/wendy/OneDrive/Documentos/NetBeansProjects/Planner/src/Controller/Controller.java</file>
             <file>file:/C:/Users/wendy/OneDrive/Documentos/NetBeansProjects/Planner/src/Models/List.java</file>
         </group>
     </open-files>
