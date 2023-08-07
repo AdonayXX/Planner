@@ -4,6 +4,8 @@
  */
 package View;
 
+import View.Members.FrmMembers;
+
 /**
  *
  * @author jprod
@@ -15,6 +17,7 @@ public class FrmMenu extends javax.swing.JFrame {
      */
     public FrmMenu() {
         initComponents();
+        View.maximize(this);
         //Maximize el formulario utilizando la interface View
         //Cargar datos utilizando clase Data.
     }
@@ -53,7 +56,7 @@ public class FrmMenu extends javax.swing.JFrame {
 
         menuMembers.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         menuMembers.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        menuMembers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Views/Icons/Miembros.png"))); // NOI18N
+        menuMembers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/Icons/Miembros.png"))); // NOI18N
         menuMembers.setText("Miembros");
         menuMembers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,8 +84,8 @@ public class FrmMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuMembersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMembersActionPerformed
-        //FrmMembers frm = new FrmMembers();
-        //View.showInternal(desktopMenu, frm);
+        FrmMembers frm = new FrmMembers();
+        View.showInternal(desktopMenu, frm);
     }//GEN-LAST:event_menuMembersActionPerformed
 
     /**
