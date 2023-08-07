@@ -41,7 +41,7 @@ public class MemberController implements Controller<Member> {
  }
  @Override
  public void delete(Member obj) {
-     if (this.delete(obj)) {
+     if (this.list.delete(obj)) {
      this.readAll();
      }else{
          this.view.displayErrorMessaje("No se encuentra el miembro o la lista no está completa");
@@ -49,13 +49,20 @@ public class MemberController implements Controller<Member> {
  }
  @Override
  public void read(Object id) {
-    Member member=this.list.search(id);
-    if(member != null){
-        this.view.
+     Member member = list.search(id);
+    if (member != null) {
+        view.display(member);
+    } else {
+        view.displayErrorMessaje("No se encontro el miembro con el ID especificado");
     }
  }
  @Override
  public void readAll(){
-     
+     Member[] members = list.toArray();
+    if (members.length > 0) {
+        view.displayAll(members);
+    } else {
+        view.displayErrorMessaje("La lista de miembros esta vacía");
+    }
  }
 }
